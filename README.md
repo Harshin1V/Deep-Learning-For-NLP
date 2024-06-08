@@ -116,3 +116,94 @@ for i, word in enumerate(words):
 	pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
 pyplot.show()
 ```
+
+# 5:Learned Embedding <br>
+Discover how to learn a word embedding distributed representation for words as part of fitting a deep learning model
+
+## Embedding Layer
+- **Keras** offers an **Embedding layer** that can be used for n**eural network**s on **text data.**
+- It requires that the **input data be integer encoded so that each word is represented by a unique integer**. This data preparation step can be **performed** using the **Tokenizer** **API** also provided with Keras.
+- The Embedding layer is initialized with **random weights** and will **learn an embedding for all of the words in the training dataset**. You must specify the input_dim which is the size of the vocabulary, the output_dim which is the size of the vector space of the embedding, and optionally the input_length which is the number of words in input sequences.
+```
+layer = Embedding(input_dim, output_dim, input_length=??)
+```
+Or, more concretely, a vocabulary of 200 words, a distributed representation of 32 dimensions and an input length of 50 words.
+```
+layer = Embedding(200, 32, input_length=50)
+```
+## Embedding with Model
+<br>
+- The Embedding layer can be used as the front-end of a deep learning model to provide a rich distributed representation of words, and importantly this representation can be learned as part of training the deep learning model.
+- For example, the snippet below will define and compile a neural network with an embedding input layer and a dense output layer for a document classification problem.
+- When the model is trained on examples of padded documents and their associated output label both the network weights and the distributed representation will be tuned to the specific data.
+<br>
+
+```
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import Flatten
+from keras.layers.embeddings import Embedding
+#define problem
+vocab_size = 100
+max_length = 32
+#define the model
+model = Sequential()
+model.add(Embedding(vocab_size, 8, input_length=max_length))
+model.add(Flatten())
+model.add(Dense(1, activation='sigmoid'))
+#compile the model
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+#summarize the model
+print(model.summary())
+```
+- It is also possible to initialize the Embedding layer with pre-trained weights, such as those prepared by Gensim and to configure the layer to not be trainable. This approach can be useful if a very large corpus of text is available to pre-train the word embedding.
+<br>
+
+# 6:Classifying Text
+- Discover the standard deep learning model for classifying text used on problems such as sentiment analysis of text.
+
+## Document Classification
+- Text classification describes a general class of problems such as predicting the sentiment of tweets and movie reviews, as well as classifying email as spam or not.
+- It is an important area of natural language processing and a great place to get started using deep learning techniques on text data.
+- Deep learning methods are proving very good at text classification, achieving state-of-the-art results on a suite of standard academic benchmark problems.
+
+## Embeddings+CNN
+- The modus operandi for text classification involves the use of a word embedding for representing words and a Convolutional Neural Network or CNN for learning how to discriminate documents on classification problems.
+### The architecture is comprised of three key pieces:
+1. Word Embedding Model: A distributed representation of words where different words that have a similar meaning (based on their usage) also have a similar representation.
+2. Convolutional Model: A feature extraction model that learns to extract salient features from documents represented using a word embedding.
+3. Fully-Connected Model: The interpretation of extracted features in terms of a predictive output.
+- This type of model can be defined in the Keras Python deep learning library. The snippet below shows an example of a deep learning model for classifying text documents as one of two classes.
+
+```
+# define problem
+vocab_size = 100
+max_length = 200
+# define model
+model = Sequential()
+model.add(Embedding(vocab_size, 100, input_length=max_length))
+model.add(Conv1D(filters=32, kernel_size=8, activation='relu'))
+model.add(MaxPooling1D(pool_size=2))
+model.add(Flatten())
+model.add(Dense(10, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+print(model.summary())
+```
+# 7:Movie Review Sentiment Analysis Project
+- Discover how to prepare text data, develop and evaluate a deep learning model to predict the sentiment of movie reviews.
+- I want you to tie together everything you have learned in this crash course and work through a real-world problem end-to-end.
+
+## Movie Review Dataset
+- The Movie Review Dataset is a collection of movie reviews retrieved from the imdb.com website in the early 2000s by Bo Pang and Lillian Lee. The reviews were collected and made available as part of their research on natural language processing.
+- Movie Review Polarity Dataset (review_polarity.tar.gz, 3MB)
+From this dataset you will develop a sentiment analysis deep learning model to predict whether a given movie review is positive or negative.
+
+## Develop and evaluate a deep learning model on the movie review dataset:
+
+- Download and inspect the dataset.
+- Clean and tokenize the text and save the results to a new file.
+- Split the clean data into train and test datasets.
+- Develop an Embedding + CNN model on the training dataset.
+- Evaluate the model on the test dataset.
+
+
