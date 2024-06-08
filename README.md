@@ -60,7 +60,7 @@ from nltk.tokenize import word_tokenize<br>
 tokens = word_tokenize(text) '''<be>
 ```
 
-# Bag-of-Words Model
+# 3.Bag-of-Words Model
 **Bag of words model** and how to encode text using this model so that you can train a model using the scikit-learn and Keras Python libraries.<br>
 - The bag-of-words model is a **way of representing text data when modeling text with machine learning algorithms.**
 - The approach is very simple and flexible, and can be used in **a myriad of ways for extracting features from documents.**
