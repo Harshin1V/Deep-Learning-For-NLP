@@ -208,4 +208,11 @@ From this dataset you will develop a sentiment analysis deep learning model to p
 - Develop an Embedding + CNN model on the training dataset.
 - Evaluate the model on the test dataset.
 
+## Prepare Movie Review Data for Sentiment Analysis (Text Classification)
+- Movie Review Dataset
+- Load Text Data
+- Clean Text Data
+- Develop Vocabulary
+- Save Prepared Data
+
 
