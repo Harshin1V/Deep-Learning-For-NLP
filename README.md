@@ -41,13 +41,19 @@ filename = '...'
 file = open(filename, 'rt')
 text = file.read()
 file.close()
-# split into words by white space
+#split into words by white space
 words = text.split()
-# convert to lowercase
+#convert to lowercase
 words = [word.lower() for word in words] '''
 
-
-
-
-
-
+# NLTK Tokenization
+Many of the best practices for tokenizing raw text have been captured and made available in a Python library called the Natural Language Toolkit or NLTK for short.<be>
+'''
+#load data
+filename = '...'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+#split into words
+from nltk.tokenize import word_tokenize
+tokens = word_tokenize(text) '''
