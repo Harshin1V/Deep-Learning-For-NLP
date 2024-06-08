@@ -36,7 +36,7 @@ You must clean your text first, which means splitting it into words and normaliz
 Generally, we refer to the process of turning raw text into something we can model as “tokenization”, where we are left with a list of words or “**tokens**”.  <br>
 We can manually develop Python code to clean text, and often this is a good approach given that each text dataset must be tokenized in a unique way.  <br>
 For example, the snippet of code below will load a text file, split tokens by whitespace and convert each token to lowercase.
-'''
+```
 filename = '...' <br>
 file = open(filename, 'rt')<br>
 text = file.read()<br>
@@ -44,11 +44,12 @@ file.close()<br>
 #split into words by white space<br>
 words = text.split()<br>
 #convert to lowercase<br>
-words = [word.lower() for word in words] '''<br>
+words = [word.lower() for word in words]
+```
 
 # NLTK Tokenization
 Many of the best practices for tokenizing raw text have been captured and made available in a Python library called the Natural Language Toolkit or NLTK for short.<be>
-'''
+```
 #load data<br>
 filename = '...'<br>
 file = open(filename, 'rt')<br>
@@ -57,7 +58,7 @@ file.close()<br>
 #split into words<br>
 from nltk.tokenize import word_tokenize<br>
 tokens = word_tokenize(text) '''<be>
-
+```
 
 # Bag-of-Words Model
 **Bag of words model** and how to encode text using this model so that you can train a model using the scikit-learn and Keras Python libraries.<br>
@@ -69,7 +70,9 @@ tokens = word_tokenize(text) '''<be>
 1.  scikit-learn
 2.  Keras Python Libraries
 <br>
-# 4. Word Embedding Representation
+
+# 4.Word Embedding Representation <br>
+
 The word embedding distributed representation and how to develop a word embedding using the Gensim Python library.
 ### Word Embeddings
 - Word embeddings are a type of word representation that allows **words with similar meaning to have a similar representation.**
@@ -90,26 +93,26 @@ The snippet below shows how to train a word embedding model and then plot a two-
 
 
 
-`
+```
 from gensim.models import Word2Vec
 from sklearn.decomposition import PCA
 from matplotlib import pyplot
-# define training data
+#define training data
 sentences = [['this', 'is', 'the', 'first', 'sentence', 'for', 'word2vec'],
 			['this', 'is', 'the', 'second', 'sentence'],
 			['yet', 'another', 'sentence'],
 			['one', 'more', 'sentence'],
 			['and', 'the', 'final', 'sentence']]
-# train model
+#train model
 model = Word2Vec(sentences, min_count=1)
-# fit a 2D PCA model to the vectors
+#fit a 2D PCA model to the vectors
 X = model[model.wv.vocab]
 pca = PCA(n_components=2)
 result = pca.fit_transform(X)
-# create a scatter plot of the projection
+#create a scatter plot of the projection
 pyplot.scatter(result[:, 0], result[:, 1])
 words = list(model.wv.vocab)
 for i, word in enumerate(words):
 	pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
 pyplot.show()
-`
+```
