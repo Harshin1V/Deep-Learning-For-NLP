@@ -1,10 +1,10 @@
-#  01: Deep Learning and Natural Language <br>
-#  02: Cleaning Text Data<br>
-#  03: Bag-of-Words Model<br>
-#  04: Word Embedding Representation<br>
-#  05: Learned Embedding<br>
-#  06: Classifying Text<br>
-#  07: Movie Review Sentiment Analysis Project<br>
+ 01: Deep Learning and Natural Language <br>
+ 02: Cleaning Text Data<br>
+ 03: Bag-of-Words Model<br>
+ 04: Word Embedding Representation<br>
+ 05: Learned Embedding<br>
+ 06: Classifying Text<br>
+ 07: Movie Review Sentiment Analysis Project<br>
 
 # Natural Language Processing
 Natural Language Processing, or NLP for short, is broadly defined as the automatic manipulation of natural language, like speech and text, by software.
